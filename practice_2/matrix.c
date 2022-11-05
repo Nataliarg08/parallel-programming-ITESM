@@ -7,7 +7,7 @@ Programa que realiza la multiplicación de matrices de forma paralela por open M
 #include <stdlib.h>
 #include <omp.h>
 
-#define N 100
+#define N 1000
 
 //Matrices para multiplicar (A y B) y la resultante (C)
 int C[N][N];
