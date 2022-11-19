@@ -1,3 +1,6 @@
+%Referencia de código: https://www.mathworks.com/matlabcentral/answers/381761-plotting-a-temperature-graphs-of-a-heat-equation-of-a-rod
+
+
 clearvars
 close all
 clc
