@@ -1,3 +1,10 @@
+/*
+Referencias de códigos:
+Funcion ecuacion:
+https://levelup.gitconnected.com/solving-2d-heat-equation-numerically-using-python-3334004aa01a 
+*/
+
+//Librerías
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -28,6 +35,7 @@ char mat[n][m]={{'F','F','F','F','F','F'},
                 {'F','F','F','F','F','F'}};
 
 
+//Funcion para llenar la matriz de temperatura
 void *temp(void *a){
     pthread_mutex_lock(&lock);//Bloqueamos el acceso a otros threads
     for(i=0; i<n;i++){
@@ -48,7 +56,8 @@ void *temp(void *a){
 
 int main(int argc, char** argv){
     srand(time(NULL));
-
+    
+  //impresion de la matriz original
     for(i=0; i<n;i++){
         for (j=0;j<m;j++){
             printf("%c ",mat[i][j]);
@@ -56,6 +65,8 @@ int main(int argc, char** argv){
         printf("\n");
     }
   
+  
+  //declaracion de threads y cores
     int thread_num;
      /* Para convertir el numero dado por el usuario en el número de thread para paralelizar el proceso */
     if (argc > 1) {
@@ -71,12 +82,15 @@ int main(int argc, char** argv){
 
     temp(mattemp);
 
+  //impresion de la matriz de temperaturas
     for(i=0; i<n;i++){
         for (j=0;j<m;j++){
             printf(" %1.1f ",mattemp[i][j]);
         }
         printf("\n");
     }
+  
+  //Ecuacion de temperatura
     int max_time = 80;
     int a = 2;
     int dx = 1;
@@ -93,8 +107,6 @@ int main(int argc, char** argv){
             }
         }
     }
-
-    //#pragma omp parallel for private(k, i, j) shared (u)
     for(int k = 0; k < max_time - 1; k++){
         for(int i = 1; i < n - 1; i+= dx){
             for(int j = 1; j < m - 1; j+= dx){
@@ -103,6 +115,7 @@ int main(int argc, char** argv){
         }
     }
   
+  //Resultado
     printf("\n ------------------------------------------------------");
     printf("\nAdministrador:");
     printf("\nEsta es su ecuacion de calor:");
